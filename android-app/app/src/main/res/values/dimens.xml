@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 通用间距 -->
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_medium">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+
+    <!-- 字体大小 -->
+    <dimen name="text_small">12sp</dimen>
+    <dimen name="text_medium">16sp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_xlarge">28sp</dimen>
+
+    <!-- 按钮高度 -->
+    <dimen name="btn_height">48dp</dimen>
+    <dimen name="btn_radius">24dp</dimen>
+
+    <!-- 游戏网格 -->
+    <dimen name="cell_size">48dp</dimen>
+    <dimen name="grid_padding">4dp</dimen>
+
+    <!-- 广告栏 -->
+    <dimen name="banner_height">50dp</dimen>
+    <dimen name="info_bar_height">60dp</dimen>
+</resources>
