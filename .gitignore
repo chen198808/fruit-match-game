@@ -1,11 +1,12 @@
-.idea/
+*.apk
+    *.aab
+    *.jks
+    local.properties
+    .idea/
     *.iml
     .DS_Store
-    local.properties
     /build/
     /app/build/
-    *.apk
-    *.aab
     __pycache__/
     *.pyc
     .env
