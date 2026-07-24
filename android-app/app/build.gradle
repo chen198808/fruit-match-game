@@ -1,0 +1,113 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        applicationId "com.mauna.aikan.xW"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0.0"
+        multiDexEnabled true
+
+        ndk {
+            // 选择支持的CPU架构
+            abiFilters 'armeabi-v7a', 'arm64-v8a'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("../keystore/fruit_match.jks")
+            storePassword 'fruitmatch123'
+            keyAlias = 'fruit_match'
+            keyPassword 'fruitmatch123'
+        }
+        debug {
+            storeFile file("../keystore/fruit_match.jks")
+            storePassword 'fruitmatch123'
+            keyAlias = 'fruit_match'
+            keyPassword 'fruitmatch123'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+
+    // 打包选项
+    packagingOptions {
+        pickFirst '**/armeabi-v7a/**'
+        pickFirst '**/arm64-v8a/**'
+    }
+}
+
+// 添加百益联盟 SDK 依赖库目录
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
+dependencies {
+    // ====== 百益联盟广告SDK（步骤1：导入aar和jar包） ======
+    // ⚠️ 请将百益联盟官方SDK的 .aar 和 .jar 文件放入 android-app/app/libs/ 目录
+    // 下载链接（你给我的）：https://www.kdocs.cn/l/cosM80ya0XtW
+    // 包含文件：ByAdSdk_*.aar、msa_mdid_oaid_sdk_*.aar 等
+    implementation fileTree(dir: "libs", include: ["*.jar", "*.aar"])
+
+    // Android Support 库（百益联盟要求的版本）
+    implementation "com.android.support:appcompat-v7:28.0.0"
+    implementation "com.android.support:support-v4:28.0.0"
+    implementation "com.android.support:design:28.0.0"
+    implementation "com.android.support:recyclerview-v7:28.0.0"
+    implementation "com.android.support:cardview-v7:28.0.0"
+    implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+
+    // multidex 支持
+    implementation 'com.android.support:multidex:1.0.3'
+
+    // 图片加载库（百益联盟推荐）
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    // JSON解析（百益联盟推荐）
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    // 智能刷新（百益联盟推荐）
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'
+    implementation 'com.scwang.smart:refresh-header-classics:2.0.1'
+    implementation 'com.scwang.smart:refresh-footer-classics:2.0.1'
+
+    // 文件下载器（百益联盟推荐）
+    implementation 'com.liulishuo.filedownloader:library:1.7.7'
+
+    // ExoPlayer（百益联盟广告视频播放需要）
+    implementation 'com.google.android.exoplayer:exoplayer-core:2.15.1'
+
+    // GroMore SDK（穿山甲多量聚合 - 百益联盟广告核心依赖）
+    implementation "com.pangle.cn:mediation-sdk:5.6.1.6"
+
+    // 网络请求
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+}
